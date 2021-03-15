@@ -1,4 +1,4 @@
-# Recruitment_Management_App
+# Recruitment Management App
 
 Simple application created to manage interviews created with Node.js and MySQL.
 Available languages: Polish, English 
