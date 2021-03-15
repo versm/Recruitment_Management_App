@@ -1,0 +1,176 @@
+<%- include('../../fragments/header.ejs') %>
+
+<main>
+    <script type="application/javascript" src="/js/validationCommon.js"></script>
+    <script type="application/javascript" src="/js/validationCandidateForm.js"></script>
+    <div class="line"></div>
+
+    <div style="display: none">
+        <span id="errorMessage-required"><%= __('validationMessage.fieldRequired') %></span>
+        <span id="errorMessage-length-2-60"><%= __('validationMessage.numberOfCharactersRequired',{from:2,to:60}) %></span>
+        <span id="errorMessage-length-5-60"><%= __('validationMessage.numberOfCharactersRequired',{from:5,to:60}) %></span>
+        <span id="errorMessage-email"><%= __('validationMessage.incorrectEmail') %></span>
+        <span id="errorMessage-phoneNumber"><%= __('validationMessage.incorrectPhoneNumber') %></span>
+        <span id="errorMessage-summary"><%= __('validationMessage.errorsSummary') %></span>
+    </div>
+
+    <h2><%= pageTitle %></h2>
+    <form class="form-edit" method="post" action="<%= formAction %>" novalidate onsubmit="return validateForm();">
+
+        <div class="form-edit-inputs">
+            <input type="hidden" name="_id" value="<%= cnd._id %>">
+
+            <label for="firstName"><%= __('cnd.fields.firstName') %>:<abbr title="required" aria-label="required">*</abbr></label>
+            <% if (locals.validationErrors) { %>
+                <input type="text" name="firstName" id="firstName" placeholder="2-60 znaków"
+                       value="<%= cnd.firstName %>"
+                        <%= (formMode == 'showDetails') ? 'disabled' : '' %>
+                       class="<%= validationErrors.find(e => e.path.includes('firstName')) ? 'error-input' : '' %>"/>
+            <% } else{ %>
+                <input type="text" name="firstName" id="firstName" placeholder="2-60 znaków"
+                       value="<%= cnd.firstName %>"
+                        <%= (formMode == 'showDetails') ? 'disabled' : '' %>/>
+            <% } %>
+            <span id="errorFirstName" class="errors-text-edit-form">
+                <% if (locals.validationErrors) { %>
+                    <% if (validationErrors.find(e => e.path.includes('firstName'))) { %>
+                        <%= validationErrors.find(e => e.path.includes('firstName')).message %>
+                <% } } %>
+            </span>
+
+
+            <label for="lastName"><%= __('cnd.fields.lastName') %>:<abbr title="required" aria-label="required">*</abbr></label>
+            <% if (locals.validationErrors) { %>
+                <input type="text" name="lastName" id="lastName" placeholder="2-60 znaków" value="<%= cnd.lastName %>"
+                        <%= (formMode == 'showDetails') ? 'disabled' : '' %>
+                       class="<%= validationErrors.find(e => e.path.includes('lastName')) ? 'error-input' : '' %>"/>
+            <% } else{ %>
+                <input type="text" name="lastName" id="lastName" placeholder="2-60 znaków" value="<%= cnd.lastName %>"
+                        <%= (formMode == 'showDetails') ? 'disabled' : '' %>/>
+            <% } %>
+            <span id="errorLastName" class="errors-text-edit-form">
+                <% if (locals.validationErrors) { %>
+                    <% if (validationErrors.find(e => e.path.includes('lastName'))) { %>
+                        <%= validationErrors.find(e => e.path.includes('lastName')).message %>
+                <% }} %>
+            </span>
+
+
+            <label for="phoneNumber"><%= __('cnd.fields.phoneNumber') %>:<abbr title="required" aria-label="required">*</abbr></label>
+            <% if (locals.validationErrors) { %>
+                <input type="text" name="phoneNumber" id="phoneNumber" placeholder="np. 111222333"
+                       value="<%= cnd.phoneNumber %>"
+                        <%= (formMode == 'showDetails') ? 'disabled' : '' %>
+                       class="<%= validationErrors.find(e => e.path.includes('phoneNumber')) ? 'error-input' : '' %>"/>
+            <% } else{ %>
+                <input type="text" name="phoneNumber" id="phoneNumber" placeholder="np. 111222333"
+                       value="<%= cnd.phoneNumber %>"
+                        <%= (formMode == 'showDetails') ? 'disabled' : '' %>/>
+            <% } %>
+            <span id="errorTel" class="errors-text-edit-form">
+                <% if (locals.validationErrors) { %>
+                    <% if (validationErrors.find(e => e.path.includes('phoneNumber'))) { %>
+                        <%= validationErrors.find(e => e.path.includes('phoneNumber')).message %>
+                <% } } %>
+            </span>
+
+
+            <label for="email"><%= __('cnd.fields.email') %>:<abbr title="required" aria-label="required">*</abbr></label>
+            <% if (locals.validationErrors) { %>
+                <input type="email" name="email" id="email" placeholder="np. nazwa@domena.pl"
+                       value="<%= cndLogin.user.email %>"
+                        <%= (formMode == 'showDetails') ? 'disabled' : '' %>
+                       class="<%= validationErrors.find(e => e.path.includes('email')) ? 'error-input' : '' %>"/>
+            <% } else{ %>
+                <input type="email" name="email" id="email" placeholder="np. nazwa@domena.pl"
+                       value="<%= cndLogin.user.email %>"
+                        <%= (formMode == 'showDetails') ? 'disabled' : '' %>/>
+            <% } %>
+            <span id="errorEmail" class="errors-text-edit-form">
+                <% if (locals.validationErrors) { %>
+                    <% if (validationErrors.find(e => e.path.includes('email'))) { %>
+                        <%= validationErrors.find(e => e.path.includes('email')).message %>
+                <% } } %>
+            </span>
+
+
+            <% if(formMode != 'showDetails') {%>
+            <label for="password"><%= __('cnd.fields.password') %>:<abbr title="required" aria-label="required">*</abbr></label>
+            <% if (locals.validationErrors) { %>
+                <input type="password" name="password" id="password" value="<%= cndLogin.user.password %>"
+                        <%= (formMode == 'showDetails') ? 'disabled' : '' %>
+                       class="<%= validationErrors.find(e => e.path.includes('password')) ? 'error-input' : '' %>"/>
+            <% } else{ %>
+                <input type="password" name="password" id="password" value="<%= cndLogin.user.password %>"
+                        <%= (formMode == 'showDetails') ? 'disabled' : '' %> />
+            <% } %>
+            <span id="errorPassword" class="errors-text">
+                <% if (locals.validationErrors) { %>
+                    <% if (validationErrors.find(e => e.path.includes('password'))) { %>
+                        <%= validationErrors.find(e => e.path.includes('password')).message %>
+                <% } } %>
+            </span>
+            <% } %>
+
+        </div>
+
+        </div>
+        <p id="errorsSummary" hidden></p>
+
+        <% if (formMode == 'showDetails') { %>
+            <a class="form-buttons" href="/candidates/edit/<%= cnd._id %>"><%= __('form.actions.edit') %></a>
+        <% } else { %>
+            <input class="form-buttons" type="submit" value="<%= __('cnd.form.edit.btnLabel') %>"/>
+            <a class="form-buttons" href="/candidates"><%= __('form.actions.cancel') %></a>
+
+        <% } %>
+
+    </form>
+
+    <% if (formMode == 'showDetails') { %>
+        <h2><%= __('cnd.form.interviews') %></h2>
+        <div style="overflow-x:auto;">
+            <table class="table">
+                <thead>
+                <tr>
+                    <th><%= __('ivw.fields.date') %></th>
+                    <th><%= __('ivw.fields.hrManager') %></th>
+                    <th><%= __('ivw.fields.isOnline') %></th>
+                    <th><%= __('ivw.fields.place') %></th>
+                    <th><%= __('ivw.fields.recruitmentStage') %></th>
+                </tr>
+                </thead>
+                <tbody>
+                <% for (let i of cnd.interviews) { %>
+                    <tr>
+                        <td><%= i.date.toISOString().split('T')[0] %></td>
+                        <td>
+                            <a class="table-reference"
+                               href="/hrmanagers/details/<%= i.hrManager._id %>"><%= i.hrManager.firstName %> <%= i.hrManager.lastName %></a>
+                        </td>
+                        <td><%= i.isOnline ? '+' : '-' %></td>
+                        <td><%= i.place ? i.place : '-' %></td>
+                        <td><%= i.recruitmentStage %></td>
+                    </tr>
+                <% } %>
+                </tbody>
+            </table>
+        </div>
+    <% } %>
+
+    <div>
+        <p id="errorsSummary" class="errors-text"></p>
+        <% if (formMode == 'showDetails') { %>
+            <a class="form-buttons" href="/candidates"><%= __('form.actions.return') %></a>
+        <% } %>
+    </div>
+
+
+</main>
+
+<%- include('../../fragments/footer.ejs') %>
+
+
+</body>
+
+</html>

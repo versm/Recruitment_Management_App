@@ -1,0 +1,180 @@
+<%- include('../../fragments/header.ejs') %>
+<main>
+    <script type="application/javascript" src="/js/validationCommon.js"></script>
+    <script type="application/javascript" src="/js/validationHrForm.js"></script>
+    <div class="line"></div>
+    <div style="display: none">
+        <span id="errorMessage-required"><%= __('validationMessage.fieldRequired') %></span>
+        <span id="errorMessage-length-2-60"><%= __('validationMessage.numberOfCharactersRequired',{from:2,to:60}) %></span>
+        <span id="errorMessage-length-5-60"><%= __('validationMessage.numberOfCharactersRequired',{from:5,to:60}) %></span>
+        <span id="errorMessage-length-50-250"><%= __('validationMessage.numberOfCharactersRequired',{from:5,to:60}) %></span>
+        <span id="errorMessage-email"><%= __('validationMessage.incorrectEmail') %></span>
+        <span id="errorMessage-salaryRange"><%= __('validationMessage.incorrectRange',{from:2000,to:100000}) %></span>
+        <span id="errorMessage-integer"><%= __('validationMessage.incorrectInteger') %></span>
+        <span id="errorMessage-summary"><%= __('validationMessage.errorsSummary') %></span>
+    </div>
+
+    <h2><%= pageTitle %></h2>
+    <form class="form-edit" method="post" action="<%= formAction %>" novalidate onsubmit="return validateForm();">
+
+        <div class="form-edit-inputs">
+            <input type="hidden" name="_id" value="<%= hr._id %>">
+
+            <label for="firstName"><%= __('hr.fields.firstName') %>:<abbr title="required" aria-label="required">*</abbr></label>
+            <% if (locals.validationErrors) { %>
+                <input type="text" name="firstName" id="firstName" placeholder="2-60 znaków" value="<%= hr.firstName %>"
+                        <%= (formMode == 'showDetails') ? 'disabled' : '' %>
+                       class="<%= validationErrors.find(e => e.path.includes('firstName')) ? 'error-input' : '' %>"/>
+            <% } else{ %>
+                <input type="text" name="firstName" id="firstName" placeholder="2-60 znaków" value="<%= hr.firstName %>"
+                        <%= (formMode == 'showDetails') ? 'disabled' : '' %>/>
+            <% } %>
+            <span id="errorFirstName" class="errors-text-edit-form">
+                <% if (locals.validationErrors) { %>
+                    <% if (validationErrors.find(e => e.path.includes('firstName'))) { %>
+                        <%= validationErrors.find(e => e.path.includes('firstName')).message %>
+                <% } } %>
+            </span>
+
+
+            <label for="lastName"><%= __('hr.fields.lastName') %>:<abbr title="required" aria-label="required">*</abbr></label>
+            <% if (locals.validationErrors) { %>
+                <input type="text" name="lastName" id="lastName" placeholder="2-60 znaków" value="<%= hr.lastName %>"
+                        <%= (formMode == 'showDetails') ? 'disabled' : '' %>
+                       class="<%= validationErrors.find(e => e.path.includes('lastName')) ? 'error-input' : '' %>"/>
+            <% } else{ %>
+                <input type="text" name="lastName" id="lastName" placeholder="2-60 znaków" value="<%= hr.lastName %>"
+                        <%= (formMode == 'showDetails') ? 'disabled' : '' %>/>
+            <% } %>
+            <span id="errorLastName" class="errors-text-edit-form">
+                <% if (locals.validationErrors) { %>
+                    <% if (validationErrors.find(e => e.path.includes('lastName'))) { %>
+                        <%= validationErrors.find(e => e.path.includes('lastName')).message %>
+                <% }} %>
+            </span>
+
+
+            <label for="salary"><%= __('hr.fields.salary') %>:<abbr title="required" aria-label="required">*</abbr></label>
+            <% if (locals.validationErrors) { %>
+                <input type="number" name="salary" id="salary" placeholder="2000-100 000" value="<%= hr.salary %>"
+                        <%= (formMode == 'showDetails') ? 'disabled' : '' %>
+                       class="<%= validationErrors.find(e => e.path.includes('salary')) ? 'error-input' : '' %>"/>
+            <% } else{ %>
+                <input type="number" name="salary" id="salary" placeholder="2000-100 000" value="<%= hr.salary %>"
+                        <%= (formMode == 'showDetails') ? 'disabled' : '' %>/>
+            <% } %>
+            <span id="errorSalary" class="errors-text-edit-form">
+                <% if (locals.validationErrors) { %>
+                    <% if (validationErrors.find(e => e.path.includes('salary'))) { %>
+                        <%= validationErrors.find(e => e.path.includes('salary')).message %>
+                <% }} %>
+            </span>
+
+
+            <label for="description"><%= __('hr.fields.description') %>:<abbr title="required" aria-label="required">*</abbr></label>
+            <% if (locals.validationErrors) { %>
+                <textarea style="resize: none;" name="description" rows="5" id="description" placeholder="20-250 znaków"
+                    <%= (formMode == 'showDetails') ? 'disabled' : '' %>
+                     class="<%= validationErrors.find(e => e.path.includes('description')) ? 'error-input' : '' %>"><%= hr.description %></textarea>
+            <% } else{ %>
+                <textarea style="resize: none;" name="description" rows="5" id="description" placeholder="20-250 znaków"
+                <%= (formMode == 'showDetails') ? 'disabled' : '' %>><%= hr.description %></textarea>
+            <% } %>
+            <span id="errorDescription" class="errors-text-edit-form">
+                <% if (locals.validationErrors) { %>
+                    <% if (validationErrors.find(e => e.path.includes('description'))) { %>
+                        <%= validationErrors.find(e => e.path.includes('description')).message %>
+                <% }} %>
+            </span>
+
+            <label for="email">E-mail:<abbr title="required" aria-label="required">*</abbr></label>
+            <% if (locals.validationErrors) { %>
+                <input type="email" name="email" id="email" placeholder="np. nazwa@domena.pl"
+                       value="<%= hrLogin.user.email %>"
+                        <%= (formMode == 'showDetails') ? 'disabled' : '' %>
+                       class="<%= validationErrors.find(e => e.path.includes('email')) ? 'error-input' : '' %>"/>
+            <% } else{ %>
+                <input type="email" name="email" id="email" placeholder="np. nazwa@domena.pl"
+                       value="<%= hrLogin.user.email %>"
+                        <%= (formMode == 'showDetails') ? 'disabled' : '' %>/>
+            <% } %>
+            <span id="errorEmail" class="errors-text-edit-form">
+                <% if (locals.validationErrors) { %>
+                    <% if (validationErrors.find(e => e.path.includes('email'))) { %>
+                        <%= validationErrors.find(e => e.path.includes('email')).message %>
+                <% } } %>
+            </span>
+
+            <% if(formMode != 'showDetails') {%>
+            <label for="password"><%= __('hr.fields.password') %>:<abbr title="required" aria-label="required">*</abbr></label>
+            <% if (locals.validationErrors) { %>
+                <input type="password" name="password" id="password" value="<%= hrLogin.user.password %>"
+                        <%= (formMode == 'showDetails') ? 'disabled' : '' %>
+                       class="<%= validationErrors.find(e => e.path.includes('password')) ? 'error-input' : '' %>"/>
+            <% } else{ %>
+                <input type="password" name="password" id="password" value="<%= hrLogin.user.password %>"
+                        <%= (formMode == 'showDetails') ? 'disabled' : '' %> />
+            <% } %>
+            <span id="errorPassword" class="errors-text">
+                <% if (locals.validationErrors) { %>
+                    <% if (validationErrors.find(e => e.path.includes('password'))) { %>
+                        <%= validationErrors.find(e => e.path.includes('password')).message %>
+                <% } } %>
+            </span>
+            <% } %>
+        </div>
+
+        <p id="errorsSummary" hidden></p>
+        <% if (formMode == 'showDetails') { %>
+            <a class="form-buttons" href="/hrmanagers/edit/<%= hr._id %>"><%= __('form.actions.edit') %></a>
+        <% } else { %>
+            <input class="form-buttons" type="submit" value="<%= btnLabel %>"/>
+            <a class="form-buttons" href="/hrmanagers"><%= __('form.actions.cancel') %></a>
+        <% } %>
+    </form>
+
+    <% if (formMode == 'showDetails') { %>
+        <h2><%= __('hr.form.interviews') %></h2>
+        <div style="overflow-x:auto;">
+            <table class="table">
+                <thead>
+                <tr>
+                    <th><%= __('ivw.fields.date') %></th>
+                    <th><%= __('ivw.fields.candidate') %></th>
+                    <th><%= __('ivw.fields.isOnline') %></th>
+                    <th><%= __('ivw.fields.place') %></th>
+                    <th><%= __('ivw.fields.recruitmentStage') %></th>
+                </tr>
+                </thead>
+                <tbody>
+                <% for (let i of hr.interviews) { %>
+                    <tr>
+                        <td><%= i.date.toISOString().split('T')[0] %></td>
+                        <td>
+                            <a class="table-reference"
+                               href="/candidates/details/<%= i.candidate._id %>"><%= i.candidate.firstName %> <%= i.candidate.lastName %></a>
+                        </td>
+                        <td><%= i.isOnline ? '+' : '-' %></td>
+                        <td><%= i.place ? i.place : '-' %></td>
+                        <td><%= i.recruitmentStage %></td>
+                    </tr>
+                <% } %>
+                </tbody>
+            </table>
+        </div>
+    <% } %>
+
+    <div>
+        <p id="errorsSummary" class="errors-text"></p>
+        <% if (formMode == 'showDetails') { %>
+            <a class="form-buttons" href="/hrmanagers"><%= __('form.actions.return') %></a>
+        <% } %>
+    </div>
+
+</main>
+
+<%- include('../../fragments/footer.ejs') %>
+
+</body>
+
+</html>

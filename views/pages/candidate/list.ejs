@@ -1,0 +1,46 @@
+<%- include('../../fragments/header.ejs') %>
+
+<main id="candidates-list-main">
+    <div class="line"></div>
+
+    <h2><%= __('cnd.list.title') %></h2>
+
+    <ul id="candidates-list">
+
+        <% for (let cnd of cnds) { %>
+            <li class="candidates-list-element">
+                <h3><%= cnd.firstName %> <%= cnd.lastName %></h3>
+                <p><%= cnd.user.email %></p>
+                <p><%= cnd.phoneNumber %></p>
+                <% if(typeof loggedUser !== 'undefined' && loggedUser.hrManager_id !=null ) { %>
+                <ul class="candidates-list-actions">
+                    <li>
+                        <a href="/candidates/details/<%= cnd._id %>"><%= __('list.actions.details') %></a>
+                    </li>
+                    <li>
+                        <a href="candidates/edit/<%= cnd._id %>"><%= __('list.actions.edit') %></a>
+                    </li>
+                    <% if(typeof loggedUser !== 'undefined' && loggedUser.hrManager_id !=null){ %>
+                    <li>
+                        <a href="candidates/delete/<%=cnd._id%>"><%= __('list.actions.delete') %></a>
+                    </li>
+                    <% } %>
+                </ul>
+                <% } %>
+            </li>
+        <% } %>
+    </ul>
+
+    <% if(typeof loggedUser !== 'undefined' && loggedUser.hrManager_id !=null) { %>
+    <p><a class="form-buttons" href="/candidates/add"><%= __('cnd.list.addNew') %></a></p>
+    <% }%>
+
+
+</main>
+
+<%- include('../../fragments/footer.ejs') %>
+
+
+</body>
+
+</html>

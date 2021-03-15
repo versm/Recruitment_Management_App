@@ -1,0 +1,168 @@
+{
+	"main-page-headers": {
+		"title": "TBHC Interviews",
+		"header1": "Recruitment is ongoing",
+		"header2": "Join our team!"
+	},
+	"main-page-list": {
+		"team": "Team",
+		"projects": "Projects",
+		"reward": "Reward system"
+	},
+	"main-page-list-content": {
+		"team-description": "In 2020, we welcomed 200 new employees to the company. At TBHC, we focus on people - come and see for yourself",
+		"projects-description": "Every year the number of completed projects increases, due to the large number of new orders and the motivation of our employees. Whenever possible, we try to give each employee a choice of the project in which they will work.",
+		"reward-description": "We guarantee high earnings from the very first days of employment. In addition, we provide numerous extras, such as Christmas bonuses or holiday funding."
+	},
+	"nav": {
+		"main-page": "Main page",
+		"candidates": "Candidates",
+		"hrManagers": "Hr Managers",
+		"interviews": "Interviews"
+	},
+	"list": {
+		"actions": {
+			"title": "Actions",
+			"details": "Details",
+			"edit": "Edit",
+			"delete": "Delete"
+		},
+		"title": "list.title"
+	},
+	"form": {
+		"actions": {
+			"return": "Return",
+			"edit": "Edit",
+			"cancel": "Cancel",
+			"delete": "form.actions.delete"
+		},
+		"actons": {
+			"cancel": "form.actons.cancel"
+		}
+	},
+	"cnd": {
+		"fields": {
+			"firstName": "First name",
+			"lastName": "Last name",
+			"email": "Email",
+			"phoneNumber": "Phone number",
+			"password": "Password"
+		},
+		"list": {
+			"title": "Candidates",
+			"addNew": "Add new candidate",
+			"pageTitle": "Candidates"
+		},
+		"form": {
+			"interviews": "Interviews details",
+			"add": {
+				"pageTitle": "Adding a new candidate",
+				"btnLabel": "Add the candidate"
+			},
+			"edit": {
+				"pageTitle": "Editing a candidate",
+				"btnLabel": "Save changes"
+			},
+			"details": {
+				"pageTitle": "Candidate's details"
+			}
+		}
+	},
+	"hr": {
+		"fields": {
+			"firstName": "First name",
+			"lastName": "Last name",
+			"email": "Email",
+			"salary": "Salary",
+			"description": "Description",
+			"password": "Password"
+		},
+		"list": {
+			"title": "Hr Managers",
+			"addNew": "Add new Hr Manager",
+			"pageTitle": "Hr Managers"
+		},
+		"form": {
+			"interviews": "Interviews details",
+			"add": {
+				"pageTitle": "Adding a new Hr manager",
+				"btnLabel": "Add the hr manager"
+			},
+			"edit": {
+				"pageTitle": "Editing Hr manager",
+				"btnLabel": "Save changes"
+			},
+			"details": {
+				"pageTitle": "Hr Manager's details"
+			}
+		}
+	},
+	"ivw": {
+		"fields": {
+			"date": "Date",
+			"candidate": "Candidate",
+			"hrManager": "Hr Manager",
+			"isOnline": "Online interview",
+			"place": "Place",
+			"recruitmentStage": "Recruitment Stage"
+		},
+		"list": {
+			"title": "Interviews",
+			"addNew": "Add new interview",
+			"pageTitle": "Interviews"
+		},
+		"form": {
+			"add": {
+				"pageTitle": "Adding a new interview",
+				"btnLabel": "Add interview"
+			},
+			"edit": {
+				"pageTitle": "Editing an interview",
+				"btnLabel": "Save changes"
+			},
+			"selectCandidate": {
+				"label": "---Select candidate---"
+			},
+			"selectHrManager": {
+				"label": "---Select hr manager---"
+			}
+		},
+		"isOnline": {
+			"yes": "Yes",
+			"no": "No"
+		}
+	},
+	"loginPanel": {
+		"loginLabel": "Sign in",
+		"logout": "Sign out",
+		"login": "Sign in",
+		"loggedAs": "Signed in as: ",
+		"areULoggedIn": "Do not have an account yet?",
+		"register": "Sign up",
+		"password": "Password"
+	},
+	"loginInfo": {
+		"loginLabel": "loginInfo.loginLabel",
+		"password": "loginInfo.password",
+		"login": "loginInfo.login",
+		"areULoggedIn": "loginInfo.areULoggedIn",
+		"register": "loginInfo.register"
+	},
+	"validationMessage": {
+		"fieldRequired": "Field is required",
+		"numberOfCharactersRequired": "The field should contain from {{from}} to {{to}} characters",
+		"incorrectEmail": "Incorrect e-mail address",
+		"incorrectPhoneNumber": "The field should contain 9 digits",
+		"errorsSummary": "Form contains errors",
+		"incorrectRange": "The required value is in the range of {{from}}-{{to}}",
+		"noPlaceRequired": "Online interview - please do not specify the place",
+		"invalidDateFormat": "The field should contain the date in the format yyyy-MM-dd",
+		"invalidDate": "Invalid date from past",
+		"incorrectInteger": "Value must be an number"
+	},
+	"placeholders": {
+		"numberOfChars": "{{from}}-{{to}} characters",
+		"email": "name@domain.pl"
+	}
+
+}

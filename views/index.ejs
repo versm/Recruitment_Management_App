@@ -1,0 +1,38 @@
+<%- include('./fragments/header.ejs') %>
+
+	<main>
+		<div id="main-picture-container">
+		    <img id="main_picture" src="/images/home.jpg" alt="home picture" >
+            <div id="main_picture_text">
+                <h1><%= __('main-page-headers.header1') %></h1>
+                <h2><%= __('main-page-headers.header2') %></h2>
+            </div>
+		</div>
+
+		<div id="main_page_icons_container">
+			<div class="main_page_icons_element">
+				<img id="people_icon" src="/images/icons8-people-100.png" alt="team_icon" >
+				<h2><%= __('main-page-list.team') %></h2>
+				<p><%= __('main-page-list-content.team-description') %></p>
+
+			</div>
+			<div class="main_page_icons_element">
+				<img id="project_icon" src="/images/icons8-project-100.png" alt="project_icon" >
+				<h2><%= __('main-page-list.projects') %></h2>
+				<p><%= __('main-page-list-content.projects-description') %></p>
+
+			</div>
+			<div class="main_page_icons_element">
+				<img id="money_icon" src="/images/icons8-man-with-money-100.png" alt="money_icon" >
+				<h2><%= __('main-page-list.reward') %></h2>
+				<p><%= __('main-page-list-content.reward-description') %></p>
+
+			</div>
+		</div>
+	</main>
+
+	<%- include('./fragments/footer.ejs') %>
+
+</body>
+
+</html>

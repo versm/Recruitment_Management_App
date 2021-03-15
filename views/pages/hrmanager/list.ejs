@@ -1,0 +1,40 @@
+<%- include('../../fragments/header.ejs') %>
+
+<main id="hr-list-main">
+    <div class="line"></div>
+
+    <h2><%= __('hr.list.title') %></h2>
+
+    <ul id="hrmanagers-list">
+        <% for (let hr of hrs) { %>
+            <li class="hrmanager-list-element">
+                <h3><%= hr.firstName %> <%= hr.lastName %></h3>
+                <p><%= hr.description %></p>
+                <% if(typeof loggedUser !== 'undefined' && loggedUser.hrManager_id !=null) { %>
+                <ul class="hrmanager-list-actions">
+                    <li>
+                        <a href="/hrmanagers/details/<%= hr._id %>"><%= __('list.actions.details') %></a>
+                    </li>
+                    <li>
+                        <a href="/hrmanagers/edit/<%= hr._id %>"><%= __('list.actions.edit') %></a>
+                    </li>
+                    <li>
+                        <a href="hrmanagers/delete/<%= hr._id %>"><%= __('list.actions.delete') %></a>
+                    </li>
+                </ul>
+                <% } %>
+            </li>
+        <% } %>
+
+    </ul>
+    <% if(typeof loggedUser !== 'undefined' && loggedUser.hrManager_id !=null) { %>
+    <p><a class="form-buttons" href="/hrmanagers/add"><%= __('hr.list.addNew') %></a></p>
+    <% } %>
+
+</main>
+
+<%- include('../../fragments/footer.ejs') %>
+
+</body>
+
+</html>

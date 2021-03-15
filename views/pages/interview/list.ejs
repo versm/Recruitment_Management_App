@@ -1,0 +1,59 @@
+<%- include('../../fragments/header.ejs') %>
+
+<main>
+    <div class="line"></div>
+
+    <h2><%= __('ivw.list.title') %></h2>
+    <div style="overflow-x:auto;">
+        <table class="table">
+            <thead>
+            <tr>
+                <th><%= __('ivw.fields.date') %></th>
+                <th><%= __('ivw.fields.candidate') %></th>
+                <th><%= __('ivw.fields.hrManager') %></th>
+                <th><%= __('ivw.fields.isOnline') %></th>
+                <th><%= __('ivw.fields.place') %></th>
+                <th><%= __('ivw.fields.recruitmentStage') %></th>
+                <% if(typeof loggedUser !== 'undefined' && loggedUser.hrManager_id !=null) { %>
+                <th><%= __('list.actions.title') %></th>
+                <% } %>
+            </tr>
+            </thead>
+            <tbody>
+            <% for (let ivw of ivws) { %>
+                <tr>
+                    <td><%= ivw.date.toISOString().split('T')[0] %></td>
+                    <td><a class="table-reference" href="/candidates/details/<%= ivw.candidate._id %>"><%= ivw.candidate.firstName %> <%= ivw.candidate.lastName %></a></td>
+                    <td><a class="table-reference" href="/hrmanagers/details/<%= ivw.hrManager._id %>"><%= ivw.hrManager.firstName %> <%= ivw.hrManager.lastName %></a></td>
+                    <td><%= ivw.isOnline ? '+' : '-' %></td>
+                    <td><%= ivw.isOnline ? '-':ivw.place %></td>
+                    <td><%= ivw.recruitmentStage%></td>
+                    <% if(typeof loggedUser !== 'undefined' && loggedUser.hrManager_id !=null) { %>
+                    <td>
+                        <ul class="list-actions">
+                            <li>
+                                <a class="list-actions-button-edit" href="/interviews/edit/<%= ivw._id%>"><%= __('list.actions.edit') %></a>
+                            </li>
+                            <li>
+                                <a class="list-actions-button-delete" href="interviews/delete/<%= ivw._id %>"><%= __('list.actions.delete') %></a>
+                            </li>
+                        </ul>
+                    </td>
+                    <% } %>
+                </tr>
+            <% } %>
+            </tbody>
+        </table>
+    </div>
+    <% if(typeof loggedUser !== 'undefined' && loggedUser.hrManager_id !=null) { %>
+    <p><a class="form-buttons" href="/interviews/add"><%= __('ivw.list.addNew') %></a></p>
+    <% } %>
+
+
+</main>
+
+<%- include('../../fragments/footer.ejs') %>
+
+</body>
+
+</html>

@@ -1,0 +1,150 @@
+<%- include('../../fragments/header.ejs') %>
+
+<main>
+    <script type="application/javascript" src="/js/validationCommon.js"></script>
+    <script type="application/javascript" src="/js/validationCandidateForm.js"></script>
+    <div class="line"></div>
+
+    <div style="display: none">
+        <span id="errorMessage-required"><%= __('validationMessage.fieldRequired') %></span>
+        <span id="errorMessage-length-10-120"><%= __('validationMessage.numberOfCharactersRequired',{from:10,to:120}) %></span>
+        <span id="errorMessage-recruitmentStageRange"><%= __('validationMessage.incorrectRange',{from:1,to:3}) %></span>
+        <span id="errorMessage-invalidDateFormat"><%= __('validationMessage.invalidDateFormat') %></span>
+        <span id="errorMessage-invalidDate"><%= __('validationMessage.invalidDate') %></span>
+        <span id="errorMessage-noPlaceRequired"><%= __('validationMessage.noPlaceRequired') %></span>
+        <span id="errorMessage-summary"><%= __('validationMessage.errorsSummary') %></span>
+    </div>
+
+    <h2><%= pageTitle %> </h2>
+    <form class="form-edit" method="post" action="<%= formAction %>" novalidate onsubmit="return validateForm();">
+
+        <div class="form-edit-inputs">
+            <input type="hidden" name="_id" value="<%= interview._id %>">
+
+            <label for="candidate"><%= __('ivw.fields.candidate') %>:<abbr title="required" aria-label="required">*</abbr></label>
+            <% if (locals.validationErrors) { %>
+                <select id="candidate" name="candidate_id"
+                        class="<%= validationErrors.find(e => e.path.includes('candidate_id')) ? 'error-input' : '' %>">
+                    <% for (let i = 0; i < allCands.length; i++) { let cnd = allCands[i]; %>
+                    <option value="<%= cnd._id %>" label="<%= cnd.firstName + ' ' + cnd.lastName %>"
+                            <%= (interview._id && cnd._id.toString() == interview.candidate_id.toString()) ? 'selected' : '' %>></option>
+                    <% } %>
+                </select>
+            <% } else{ %>
+                <select id="candidate" name="candidate_id">
+                    <% for (let i = 0; i < allCands.length; i++) {let cnd = allCands[i]; %>
+                    <option value="<%= cnd._id %>" label="<%= cnd.firstName + ' ' + cnd.lastName %>"
+                            <%= (interview._id && cnd._id.toString() == interview.candidate._id.toString()) ? 'selected' : '' %>></option>
+                    <% } %>
+                </select>
+            <% } %>
+            <span id="errorCandidate" class="errors-text-edit-form">
+                <% if (locals.validationErrors) { %>
+                    <% if (validationErrors.find(e => e.path.includes('candidate_id'))) { %>
+                        <%= validationErrors.find(e => e.path.includes('candidate_id')).message %>
+                <% } } %>
+            </span>
+
+
+            <label for="hrmanager"><%= __('ivw.fields.hrManager') %>:<abbr title="required" aria-label="required">*</abbr></label>
+            <% if (locals.validationErrors) { %>
+                <select id="hrmanager" name="hrManager_id"
+                        class="<%= validationErrors.find(e => e.path.includes('hrManager_id')) ? 'error-input' : '' %>">
+                    <% for (let i = 0; i < allHrMans.length; i++) { let hr = allHrMans[i]; %>
+                    <option value="<%= hr._id %>" label="<%= hr.firstName + ' ' + hr.lastName %>"
+                            <%= (interview._id && hr._id.toString() == interview.hrManager_id.toString()) ? 'selected' : '' %>></option>
+                    <% } %>
+                </select>
+            <% } else{ %>
+                <select id="hrmanager" name="hrManager_id">
+                    <% for (let i = 0; i < allHrMans.length; i++) {let hr = allHrMans[i]; %>
+                    <option value="<%= hr._id %>" label="<%= hr.firstName + ' ' + hr.lastName %>"
+                            <%= (interview._id && hr._id.toString() == interview.hrManager_id.toString()) ? 'selected' : '' %>></option>
+                    <% } %>
+                </select>
+            <% } %>
+            <span id="errorHrManager" class="errors-text-edit-form">
+                <% if (locals.validationErrors) { %>
+                    <% if (validationErrors.find(e => e.path.includes('hrManager_id'))) { %>
+                        <%= validationErrors.find(e => e.path.includes('hrManager_id')).message %>
+                <% } } %>
+            </span>
+
+
+            <label for="date"><%= __('ivw.fields.date') %>:<abbr title="required" aria-label="required">*</abbr></label>
+            <% if (locals.validationErrors) { %>
+                <input type="date" name="date" id="date"
+                       value="<%= interview.date == '' ? '' : new Date(interview.date).toISOString().split('T')[0] %>"
+                       class="<%= validationErrors.find(e => e.path.includes('date')) ? 'error-input' : '' %>"/>
+            <% } else{ %>
+                <input type="date" name="date" id="date" value="<%= new Date(interview.date).toISOString().split('T')[0]%>"/>
+            <% } %>
+            <span id="errorDate" class="errors-text-edit-form">
+                <% if (locals.validationErrors) { %>
+                    <% if (validationErrors.find(e => e.path.includes('date'))) { %>
+                        <%= validationErrors.find(e => e.path.includes('date')).message %>
+                <% } } %>
+            </span>
+
+
+            <label for="isOnline"><%= __('ivw.fields.isOnline') %>:<abbr title="required" aria-label="required">*</abbr></label>
+            <% if (locals.validationErrors) { %>
+                <select id="isOnline" name="isOnline" value="<%= interview.isOnline ? 'Tak' : 'Nie' %>"
+                        class="<%= validationErrors.find(e => e.path.includes('isOnline')) ? 'error-input' : '' %>">
+                    <option value="true"><%= __('ivw.isOnline.yes') %></option>
+                    <option value="false"><%= __('ivw.isOnline.no') %></option>
+                </select>
+            <% } else{ %>
+                <select id="isOnline" name="isOnline">
+                    <option value="true" <%= interview.isOnline==true? 'selected':'' %>><%= __('ivw.isOnline.yes') %></option>
+                    <option value="false" <%= interview.isOnline==false? 'selected':'' %>><%= __('ivw.isOnline.no') %></option>
+                </select>
+            <% } %>
+            <span id="errorPlace" class="errors-text-edit-form">
+                <% if (locals.validationErrors) { %>
+                    <% if (validationErrors.find(e => e.path.includes('isOnline'))) { %>
+                        <%= validationErrors.find(e => e.path.includes('isOnline')).message %>
+                <% } } %>
+            </span>
+
+
+            <label for="place"><%= __('ivw.fields.place') %>:<abbr title="required" aria-label="required">*</abbr></label>
+            <% if (locals.validationErrors) { %>
+                <input type="text" name="place" id="place" value="<%= interview.isOnline ? null : interview.place %>"
+                       class="<%= validationErrors.find(e => e.path.includes('place')) ? 'error-input' : '' %>"/>
+            <% } else{ %>
+                <input type="text" name="place" id="place" value="<%= interview.isOnline ? null : interview.place %>"/>
+            <% } %>
+            <span id="errorPlace" class="errors-text-edit-form">
+                <% if (locals.validationErrors) { %>
+                    <% if (validationErrors.find(e => e.path.includes('place'))) { %>
+                        <%= validationErrors.find(e => e.path.includes('place')).message %>
+                <% } } %>
+            </span>
+
+            <label for="recruitmentStage"><%= __('ivw.fields.recruitmentStage') %>:<abbr title="required" aria-label="required">*</abbr></label>
+            <% if (locals.validationErrors) { %>
+                <input type="text" name="recruitmentStage" id="recruitmentStage" placeholder="1-3" value="<%= interview.recruitmentStage %>"
+                       class="<%= validationErrors.find(e => e.path.includes('recruitmentStage')) ? 'error-input' : '' %>"/>
+            <% } else{ %>
+                <input type="text" name="recruitmentStage" id="recruitmentStage" placeholder="1-3" value="<%= interview.recruitmentStage %>"/>
+            <% } %>
+            <span id="errorRecruitmentStage" class="errors-text-edit-form">
+                <% if (locals.validationErrors) { %>
+                    <% if (validationErrors.find(e => e.path.includes('recruitmentStage'))) { %>
+                        <%= validationErrors.find(e => e.path.includes('recruitmentStage')).message %>
+                <% } } %>
+            </span>
+
+        </div>
+
+        <input type="submit" value="<%= btnLabel %>" class="form-buttons"/>
+        <a href="/interviews" class="form-buttons"><%= __('form.actions.cancel') %></a>
+    </form>
+</main>
+
+<%- include('../../fragments/footer.ejs') %>
+
+</body>
+
+</html>

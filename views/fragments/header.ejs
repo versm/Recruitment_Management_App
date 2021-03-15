@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="pl-PL">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>TBHC interviews</title>
+
+    <link rel="stylesheet" href="/css/style.css"/>
+    <link href='http://fonts.googleapis.com/css?family=Lato:400,900&subset=latin,latin-ext' rel='stylesheet'
+          type='text/css'>
+
+</head>
+
+<body>
+<header>
+    <div id="header_logo_menu">
+        <div class="logo-container">
+            <img id="logo" src="/images/earth.png" alt="TBHC Logo">
+            <h1 id="title"><%= __('main-page-headers.title') %></h1>
+        </div>
+
+        <div>
+            <ul class="langs">
+                <li><a href="/changeLang/pl" class="<%= lang == 'pl' ? 'active' : '' %>">PL</a></li>
+                <li><a href="/changeLang/en" class="<%= lang == 'en' ? 'active' : '' %>">EN</a></li>
+            </ul>
+        <nav>
+            <ul id="menu">
+                <li class="option"><a href="/" class="<%= navLocation == 'main' ? 'active' : '' %>"><%= __('nav.main-page') %></a>
+                </li>
+                <% if(typeof loggedUser !== 'undefined' && (loggedUser.hrManager_id != null || loggedUser.candidate_id != null)) { %>
+                    <li class="option"><a href="/candidates" class="<%= navLocation == 'cnd' ? 'active' : '' %>"><%= __('nav.candidates') %></a>
+                    </li>
+                <% } %>
+                <li class="option"><a href="/hrmanagers" class="<%= navLocation == 'hr' ? 'active' : '' %>"><%= __('nav.hrManagers') %></a></li>
+                <% if(typeof loggedUser !== 'undefined' && (loggedUser.hrManager_id != null || loggedUser.candidate_id != null)) { %>
+                    <li class="option"><a href="/interviews" class="<%= navLocation == 'ivw' ? 'active' : '' %>"><%= __('nav.interviews') %></a></li>
+                <% } %>
+            </ul>
+        </nav>
+        </div>
+    </div>
+    <% if(!loggedUser) { %>
+        <div id="login">
+            <form class="form-login" method="post" action="/login" novalidate>
+                <h4><%= __('loginPanel.loginLabel') %></h4>
+                <label for="loginEmail">E-mail:</label>
+                <input type="email" id="loginEmail" name="email">
+
+                <label for="loginPassword"><%= __('loginPanel.password') %>:</label>
+                <input type="password" id="loginPassword" name="password">
+
+                <input class="login-button" type="submit" value="<%= __('loginPanel.login') %>">
+                <span id="loginErrors"><%= loginError ? loginError : '' %></span>
+            </form>
+        </div>
+        <div id="sign_up">
+            <span><%= __('loginPanel.areULoggedIn') %></span>
+            <a href="/candidates/add" class="sign-up-button"><%= __('loginPanel.register') %></a>
+        </div>
+    <% } else { %>
+    <div id="login-info-container">
+        <span class="login-info"><b><%= __('loginPanel.loggedAs') %> </b><%= loggedUser.candidate_id==null? loggedUser.hrManager.firstName + " " + loggedUser.hrManager.lastName: loggedUser.candidate.firstName + " " + loggedUser.candidate.lastName %></span>
+        <a href="/logout" class="logout-button"><%= __('loginPanel.logout') %></a>
+    </div>
+    <% } %>
+</header>

@@ -1,0 +1,157 @@
+{
+	"main-page-headers": {
+		"title": "TBHC Rekrutacje",
+		"header1": "Rekrutacja trwa",
+		"header2": "Dołącz do zespołu już dziś!"
+	},
+	"main-page-list": {
+		"team": "Zespół",
+		"projects": "Projekty",
+		"reward": "Wynagrodzenie"
+	},
+	"main-page-list-content":{
+		"team-description": "W samym 2020 roku powitaliśmy w firmie 200 nowych pracowników. W TBHC stawiamy na ludzi- przyjdź i przekonaj się sam.",
+		"projects-description": "Z każdym rokiem ilość zrealizowanych przez nas projektów wzrasta, a to za sprawą dużej ilości nowych zleceń i motywacji naszych pracowników. W miarę możliwości, staramy się dać każdemu pracownikowi wybór projektu, w którym będzie działać.",
+		"reward-description": "Gwarantujemy wysokie wynagrodzenie już od pierwszych dni zatrudnienia. Dodatkowo zapewniamy liczne dodatki takie jak premie świąteczne czy dofinansowanie do wypoczynku."
+	},
+	"nav": {
+		"main-page": "Strona główna",
+		"candidates": "Kandydaci",
+		"hrManagers": "Rekruterzy",
+		"interviews": "Rozmowy rekrutacyjne"
+	},
+	"list": {
+		"actions": {
+			"title": "Akcje",
+			"details": "Szczegóły",
+			"edit": "Edytuj",
+			"delete": "Usuń"
+		}
+	},
+	"form": {
+		"actions": {
+			"return": "Powrót",
+			"edit": "Edytuj",
+			"cancel": "Anuluj"
+		}
+	},
+	"cnd": {
+		"fields": {
+			"firstName": "Imię",
+			"lastName": "Nazwisko",
+			"email": "Email",
+			"phoneNumber": "Numer telefonu",
+			"password": "Hasło"
+		},
+		"list": {
+			"title": "Kandydaci",
+			"addNew": "Dodaj nowego kandydata",
+			"pageTitle": "Kandydaci"
+		},
+		"form": {
+			"interviews": "Szczegóły rozmów rekrutacyjnych",
+			"add": {
+				"pageTitle": "Dodawanie kandydata",
+				"btnLabel": "Dodaj kandydata"
+			},
+			"edit": {
+				"pageTitle": "Edycja kandydata",
+				"btnLabel": "Zapisz zmiany"
+			},
+			"details": {
+				"pageTitle": "Szczegóły kandydata"
+			}
+		}
+	},
+  "hr": {
+    "fields": {
+      "firstName": "Imię",
+      "lastName": "Nazwisko",
+      "email": "Email",
+		"salary": "Pensja",
+		"description": "Opis",
+		"password": "Hasło"
+    },
+    "list": {
+      "title": "Rekruterzy",
+      "addNew": "Dodaj nowego rekrutera",
+      "pageTitle": "Rekruterzy"
+    },
+    "form": {
+      "interviews": "Szczegóły rozmów rekrutacyjnych",
+      "add": {
+        "pageTitle": "Dodawanie rekrutera",
+        "btnLabel": "Dodaj rekrutera"
+      },
+      "edit": {
+        "pageTitle": "Edycja rekrutera",
+        "btnLabel": "Zapisz zmiany"
+      },
+		"details": {
+			"pageTitle": "Szczegóły rekrutera"
+		}
+    }
+  },
+	"ivw": {
+		"fields": {
+			"date": "Data",
+			"candidate": "Kandydat",
+			"hrManager": "Rekruter",
+			"isOnline": "Rekrutacja Online",
+			"place": "Miejsce",
+			"recruitmentStage": "Etap rekrutacji"
+		},
+		"list": {
+			"title": "Rozmowy rekrutacyjne",
+			"addNew": "Dodaj nową rozmowę rekrutacyjną",
+			"pageTitle": "Rozmowy rekrutacyjne",
+			"isOnline": "Yes",
+			"isNotOnline": "No"
+		},
+		"form": {
+			"add": {
+				"pageTitle": "Dodawanie rozmów rekrutacyjnych",
+				"btnLabel": "Dodaj nową rozmowę"
+			},
+			"edit": {
+				"pageTitle": "Edycja rozmowy rekrutacyjnej",
+				"btnLabel": "Zapisz zmiany"
+			},
+			"selectCandidate": {
+				"label": "---Wybierz kandydata---"
+			},
+			"selectHrManager": {
+				"label": "---Wybierz rekrutera---"
+			}
+		},
+		"isOnline": {
+			"yes": "Tak",
+			"no": "Nie"
+		}
+	},
+	"loginPanel": {
+		"loginLabel": "Logowanie",
+		"logout": "Wyloguj się",
+		"login": "Zaloguj się",
+		"loggedAs": "Jesteś zalogowany jako: ",
+		"areULoggedIn": "Nie masz jeszcze konta?",
+		"register": "Zarejestruj się",
+		"password": "Hasło"
+	},
+	"validationMessage": {
+		"fieldRequired": "Pole jest wymagane",
+		"numberOfCharactersRequired": "Pole powinno zawierać od {{from}} do {{to}} znaków",
+		"incorrectEmail": "Nieprawidłowy adres email",
+		"incorrectPhoneNumber": "Pole powinno zawierać 9 cyfr",
+		"incorrectRange": "Wymagana wartość z zakresu {{from}}-{{to}}",
+		"incorrectInteger": "Wartość musi być liczbą",
+		"noPlaceRequired": "Rekrutacja online- proszę nie podawać miejsca",
+		"invalidDateFormat": "Pole powinno zawierać datę w formacie yyyy-MM-dd",
+		"invalidDate": "Nieprawidłowa data z przeszłości",
+		"errorsSummary": "Formularz zawiera błędy"
+	},
+	"placeholders": {
+		"numberOfChars": "{{from}}-{{to}} znaków",
+		"email": "nazwa@domena.pl"
+	}
+}

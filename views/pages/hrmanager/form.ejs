@@ -1,0 +1,138 @@
+<%- include('../../fragments/header.ejs') %>
+
+<main>
+    <script type="application/javascript" src="/js/validationCommon.js"></script>
+    <script type="application/javascript" src="/js/validationHrForm.js"></script>
+
+    <div class="line"></div>
+
+    <div style="display: none">
+        <span id="errorMessage-required"><%= __('validationMessage.fieldRequired') %></span>
+        <span id="errorMessage-length-2-60"><%= __('validationMessage.numberOfCharactersRequired',{from:2,to:60}) %></span>
+        <span id="errorMessage-length-5-60"><%= __('validationMessage.numberOfCharactersRequired',{from:5,to:60}) %></span>
+        <span id="errorMessage-length-50-250"><%= __('validationMessage.numberOfCharactersRequired',{from:5,to:60}) %></span>
+        <span id="errorMessage-email"><%= __('validationMessage.incorrectEmail') %></span>
+        <span id="errorMessage-salaryRange"><%= __('validationMessage.incorrectRange',{from:2000,to:100000}) %></span>
+        <span id="errorMessage-integer"><%= __('validationMessage.incorrectInteger') %></span>
+        <span id="errorMessage-summary"><%= __('validationMessage.errorsSummary') %></span>
+    </div>
+
+    <div class="hr-form-background">
+        <div class="hr-form-add-container">
+            <h2><%= pageTitle %></h2>
+            <form class="form-add" method="post" action="<%= formAction %>" novalidate onsubmit="return validateForm();">
+                <input type="hidden" name="_id" value="<%= hr._id %>"/>
+
+                <div>
+                    <label for="firstName"><%= __('hr.fields.firstName') %>:<abbr title="required" aria-label="required">*</abbr></label>
+                    <% if (locals.validationErrors) { %>
+                        <input type="text" name="firstName" id="firstName" placeholder="<%= __('placeholders.numberOfChars',{from:2,to:60}) %>"
+                               value="<%= hr.firstName %>"
+                               class="<%= validationErrors.find(e => e.path.includes('firstName')) ? 'error-input' : '' %>"/>
+                    <% } else{ %>
+                        <input type="text" name="firstName" id="firstName" placeholder="<%= __('placeholders.numberOfChars',{from:2,to:60}) %>" value="<%= hr.firstName %>">
+                    <% } %>
+                    <span id="errorFirstName" class="errors-text">
+                        <% if (locals.validationErrors) { %>
+                            <% if (validationErrors.find(e => e.path.includes('firstName'))) { %>
+                                <%= __(validationErrors.find(e => e.path.includes('firstName')).message,{from:2,to:60}) %>
+                        <% } } %>
+                    </span>
+                </div>
+
+                <div>
+                    <label for="lastName"><%= __('hr.fields.lastName') %>:<abbr title="required" aria-label="required">*</abbr></label>
+                    <% if (locals.validationErrors) { %>
+                        <input type="text" name="lastName" id="lastName" placeholder="<%= __('placeholders.numberOfChars',{from:2,to:60}) %>"
+                               value="<%= hr.lastName %>"
+                               class="<%= validationErrors.find(e => e.path.includes('lastName')) ? 'error-input' : '' %>"/>
+                    <% } else{ %>
+                        <input type="text" name="lastName" id="lastName" placeholder="<%= __('placeholders.numberOfChars',{from:2,to:60}) %>" value="<%= hr.lastName %>"/>
+                    <% } %>
+                    <span id="errorLastName" class="errors-text">
+                        <% if (locals.validationErrors) { %>
+                            <% if (validationErrors.find(e => e.path.includes('lastName'))) { %>
+                                <%= __(validationErrors.find(e => e.path.includes('lastName')).message,{from:2,to:60}) %>
+                        <% }} %>
+                    </span>
+                </div>
+
+                <div>
+                    <label for="salary"><%= __('hr.fields.salary') %>:<abbr title="required" aria-label="required">*</abbr></label>
+                    <% if (locals.validationErrors) { %>
+                        <input type="text" name="salary" id="salary" placeholder="2000-100 000" value="<%= hr.salary %>"
+                               class="<%= validationErrors.find(e => e.path.includes('salary')) ? 'error-input' : '' %>"/>
+                    <% } else{ %>
+                        <input type="text" name="salary" id="salary" placeholder="2000-100 000" value="<%= hr.salary %>" />
+                    <% } %>
+                    <span id="errorSalary" class="errors-text">
+                        <% if (locals.validationErrors) { %>
+                            <% if (validationErrors.find(e => e.path.includes('salary'))) { %>
+                                <%= __(validationErrors.find(e => e.path.includes('salary')).message,{from:2000,to:100000}) %>
+                        <% }} %>
+                    </span>
+                </div>
+
+                <div>
+                    <label for="description"><%= __('hr.fields.description') %>:<abbr title="required" aria-label="required">*</abbr></label>
+                    <% if (locals.validationErrors) { %>
+                        <textarea style="resize: none;" name="description" rows="5" id="description" placeholder="<%= __('placeholders.numberOfChars',{from:50,to:250}) %>"
+                            class="<%= validationErrors.find(e => e.path.includes('description')) ? 'error-input' : '' %>"><%= hr.description %></textarea>
+                    <% } else{ %>
+                        <textarea style="resize: none;" name="description" rows="5" id="description" placeholder="<%= __('placeholders.numberOfChars',{from:50,to:250}) %>"><%= hr.description %></textarea>
+                    <% } %>
+                    <span id="errorDescription" class="errors-text">
+                        <% if (locals.validationErrors) { %>
+                            <% if (validationErrors.find(e => e.path.includes('description'))) { %>
+                                <%= __(validationErrors.find(e => e.path.includes('description')).message,{from:50,to:250}) %>
+                        <% }} %>
+                    </span>
+                </div>
+                <div>
+                    <label for="email"><%= __('hr.fields.email') %>:<abbr title="required" aria-label="required">*</abbr></label>
+                    <% if (locals.validationErrors) {%>
+                        <input type="email" name="email" id="email" placeholder="<%= __('placeholders.email') %>" value="<%= hr.email %>"
+                               class="<%= validationErrors.find(e => e.path.includes('email')) ? 'error-input' : '' %>"/>
+                    <%} else{%>
+                        <input type="email" name="email" id="email" placeholder="<%= __('placeholders.email') %>"/>
+                    <%}%>
+                    <span id="errorEmail" class="errors-text">
+                        <% if (locals.validationErrors) {%>
+                            <% if (validationErrors.find(e => e.path.includes('email'))) { %>
+                                <%= __(validationErrors.find(e => e.path.includes('email')).message) %>
+                        <% } }%>
+                    </span>
+                </div>
+                <div>
+                    <label for="password"><%= __('hr.fields.password') %>:<abbr title="required" aria-label="required">*</abbr></label>
+                    <% if (locals.validationErrors) {%>
+                        <input type="password" name="password" id="password" value="<%= hr.password %>" placeholder="<%= __('placeholders.numberOfChars',{from:5,to:60}) %>"
+                               class="<%= validationErrors.find(e => e.path.includes('password')) ? 'error-input' : '' %>"/>
+                    <%} else{%>
+                        <input type="password" name="password" id="password" placeholder="<%= __('placeholders.numberOfChars',{from:5,to:60}) %>"/>
+                    <%}%>
+                    <span id="errorPassword" class="errors-text">
+                        <% if (locals.validationErrors) {%>
+                            <% if (validationErrors.find(e => e.path.includes('password'))) { %>
+                                <%= __(validationErrors.find(e => e.path.includes('password')).message) %>
+                        <% } }%>
+                    </span>
+                </div>
+
+                <div id="form-buttons-container">
+                    <p id="errorsSummary"></p>
+                    <input type="submit" value="<%= btnLabel %>" class="form-buttons"/>
+                    <a class="form-buttons" href="/hrmanagers"><%= __('form.actions.cancel') %></a>
+                </div>
+
+            </form>
+        </div>
+    </div>
+
+</main>
+
+<%- include('../../fragments/footer.ejs') %>
+
+</body>
+
+</html>

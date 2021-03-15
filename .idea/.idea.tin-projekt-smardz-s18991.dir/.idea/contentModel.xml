@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ContentModelStore">
+    <e p="C:\Users\Weronika\.Rider2019.3\system\extResources" t="IncludeRecursive" />
+    <e p="C:\Users\Weronika\.Rider2019.3\system\resharper-host\local\Transient\ReSharperHost\v193\SolutionCaches\_.19.00" t="ExcludeRecursive" />
+    <e p="C:\Users\Weronika\Desktop\pjatk\5 semestr\TIN\tin-projekt-smardz-s18991" t="IncludeFlat">
+      <e p="node_modules\cookie-parser" t="IncludeRecursive" />
+      <e p="node_modules\debug" t="IncludeRecursive" />
+      <e p="node_modules\ejs" t="IncludeRecursive" />
+      <e p="node_modules\express" t="IncludeRecursive" />
+      <e p="node_modules\http-errors" t="IncludeRecursive" />
+      <e p="node_modules\morgan" t="IncludeRecursive" />
+    </e>
+  </component>
+</project>
