@@ -1,16 +1,26 @@
 # Recruitment_Management_App
 
-
-
-<img src="tetris_screenshot.jpg" width=400>
-
+Simple application created to manage interviews created with Node.js and MySQL.
+Available languages: Polish, English 
 
 ### Technologies
-
-
-### How to run?
- * **bbb
-
+* Node.js, Express.js, Sequelize ORM
+* JavaScript- Client Side Validation
+* Docker
+* MySQL database
+* HTML, CSS- structure and views
  
-### General rules
-1. ggg
+### Views
+##### Home page
+<img src="home_page.jpg" width=400>
+List view
+<img src="hr_list.jpg" width=400>
+New interview form 
+<img src="interview_form.jpg" width=400>
+New candidate form
+<img src="candidate_form.jpg" width=400>
+Details page
+<img src="candidate_details.jpg" width=400>
+
+
+
