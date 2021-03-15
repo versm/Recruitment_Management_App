@@ -1,7 +1,8 @@
 # Recruitment Management App
 
 Simple application created to manage interviews created with Node.js and MySQL.
-Available languages: Polish, English 
+Available languages: Polish, English.
+Application supports 2 types of users: hr manager and candidate. Depending on the type of user, different functionalities are available
 
 ### Technologies
 * Node.js, Express.js, Sequelize ORM
